@@ -1,8 +1,6 @@
 # NormalDistribution
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/normal_distribution`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem was created to serve for anomalous values detection in data using normal distribution.
 
 ## Installation
 
@@ -22,7 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+data = [1, 1.5, 1.8, 1.9, 2, 2.1, 2, 2.3, 2.7, 2.9, 3.1]
+model = NormalDistribution::Model.new data
+
+percentage = 95
+bottom, top = model.confidence_interval(percentage)
+
+potential_anomaly = 3.0
+if top < potential_anomaly
+    puts "#{ potential_anomaly } is in group of rarest 5 %. Therefore, it's an anomaly"
+end
+```
 
 ## Development
 

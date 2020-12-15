@@ -34,9 +34,10 @@ static double t_stddev( double * data, long size, double mean ) {
 }
 
 static double * t_ary_to_double( VALUE ary, long * size ) {
-	long len = RARRAY_LEN(ary);
-	VALUE * values = RARRAY_PTR(ary);
-	double * d_data = ALLOC_N(double,len );
+	long len = RARRAY_LEN( ary );
+	VALUE * values = RARRAY_PTR( ary );
+	double * d_data = ALLOC_N(
+	double,len );
 
 	for ( int i = 0 ; i < len ; ++ i ) {
 		d_data[i] = NUM2DBL( values[i] );
@@ -53,7 +54,6 @@ static VALUE t_init( VALUE self, VALUE values ) {
 	double mean = t_mean( data, size );
 	double stddev = t_stddev( data, size, mean );
 
-	rb_iv_set( self, "@data_size", INT2NUM( size ) );
 	rb_iv_set( self, "@mean", rb_float_new( mean ) );
 	rb_iv_set( self, "@standard_deviation", rb_float_new( stddev ) );
 	free( data );
@@ -64,13 +64,13 @@ static VALUE t_init( VALUE self, VALUE values ) {
 static VALUE t_confidence_interval( VALUE self, VALUE percentage ) {
 	double z = t_z_score( NUM2DBL( percentage ) );
 	double stddev = NUM2DBL( rb_iv_get( self, "@standard_deviation" ) );
-	int size = NUM2INT( rb_iv_get( self, "@data_size" ) );
-	double delta = z * stddev / sqrt( size );
 	double mean = NUM2DBL( rb_iv_get( self, "@mean" ) );
-	VALUE pair = rb_ary_new();
+	double lower_bound = - z * stddev + mean;
+	double upper_bound = z * stddev + mean;
 
-	rb_ary_push( pair, rb_float_new( mean - delta ) );
-	rb_ary_push( pair, rb_float_new( mean + delta ) );
+	VALUE pair = rb_ary_new();
+	rb_ary_push( pair, rb_float_new( lower_bound ) );
+	rb_ary_push( pair, rb_float_new( upper_bound ) );
 
 	return pair;
 }

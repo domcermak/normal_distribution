@@ -28,7 +28,7 @@ percentage = 95
 bottom, top = model.confidence_interval(percentage)
 
 potential_anomaly = 3.0
-if top < potential_anomaly
+if bottom > potential_anomaly or top < potential_anomaly  
     puts "#{ potential_anomaly } is in group of rarest 5 %. Therefore, it's an anomaly"
 end
 ```

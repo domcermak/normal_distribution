@@ -2,16 +2,16 @@
 
 RSpec.describe NormalDistribution::Model do
   context 'with successful evaluation' do
-    let(:data) { [ 1, 2, 2, 3, 3, 3, 4, 4, 5 ] }
+    let(:data) { [1, 2, 2, 3, 3, 3, 4, 4, 5] }
 
     subject { NormalDistribution::Model.new data }
 
     it 'calculates correctly mean of data' do
-        expect(subject.mean).to eq 3
+      expect(subject.mean).to eq 3
     end
 
     it 'calculates correctly standard deviation of data' do
-        expect(subject.standard_deviation).to be_within(0.0001).of(1.1547)
+      expect(subject.standard_deviation).to be_within(0.0001).of(1.1547)
     end
 
     it 'calculates correctly confidence interval' do

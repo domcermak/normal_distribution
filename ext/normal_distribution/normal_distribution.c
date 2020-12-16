@@ -15,15 +15,13 @@ static double t_z_score( double percentage ) {
 }
 
 static double t_variance( double * data, long size, double mean ) {
-	double * squared_diff, variance;
+	double * squared_diff = ALLOC_N( double, size );
 
-	squared_diff = ALLOC_N(
-	double, size);
 	for ( long i = 0 ; i < size ; ++ i ) {
 		squared_diff[i] = pow( mean - data[i], 2 );
 	}
 
-	variance = t_mean( squared_diff, size );
+	double variance = t_mean( squared_diff, size );
 	free( squared_diff );
 
 	return variance;
@@ -36,8 +34,7 @@ static double t_stddev( double * data, long size, double mean ) {
 static double * t_ary_to_double( VALUE ary, long * size ) {
 	long len = RARRAY_LEN( ary );
 	VALUE * values = RARRAY_PTR( ary );
-	double * d_data = ALLOC_N(
-	double,len );
+	double * d_data = ALLOC_N( double, len );
 
 	for ( int i = 0 ; i < len ; ++ i ) {
 		d_data[i] = NUM2DBL( values[i] );

@@ -10,8 +10,9 @@ Gem::Specification.new do |spec|
   spec.email         = ["domcermak64@gmail.com"]
 
   spec.summary       = "This gem provides library to detect anomalies in numerical data via normal distribution"
-  # spec.description   = %q{TODO: Write a longer description or delete this line.}
-  # spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.description   = "Normal distribution model allows to create normal distribution from given data." \
+                       "Initial reason to build this was to use it in anomaly detection in discrete numerical data."
+  spec.homepage      = "https://github.com/domcermak/normal_distribution"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

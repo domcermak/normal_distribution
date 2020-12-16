@@ -1,5 +1,15 @@
 #include "normal_distribution.h"
 
+static double t_parse_percentage(VALUE percentage) {
+    double perc = NUM2DBL( percentage );
+
+    if (perc > 100 || perc < 0) {
+        rb_raise(rb_eArgError, "percentage must be between 0 and 100");
+    }
+
+    return perc;
+}
+
 static double t_mean( double * data, long size ) {
 	double sum = .0;
 
@@ -31,8 +41,14 @@ static double t_stddev( double * data, long size, double mean ) {
 	return sqrt( t_variance( data, size, mean ) );
 }
 
-static double * t_ary_to_double( VALUE ary, long * size ) {
+static double * t_parse_dbl_ary( VALUE ary, long * size ) {
+    Check_Type(ary, T_ARRAY);
 	long len = RARRAY_LEN( ary );
+
+	if (len == 0) {
+	    rb_raise(rb_eArgError, "data must not be empty");
+	}
+
 	VALUE * values = RARRAY_PTR( ary );
 	double * d_data = ALLOC_N( double, len );
 
@@ -47,7 +63,7 @@ static double * t_ary_to_double( VALUE ary, long * size ) {
 
 static VALUE t_init( VALUE self, VALUE values ) {
 	long size;
-	double * data = t_ary_to_double( values, &size );
+	double * data = t_parse_dbl_ary( values, &size );
 	double mean = t_mean( data, size );
 	double stddev = t_stddev( data, size, mean );
 
@@ -59,7 +75,8 @@ static VALUE t_init( VALUE self, VALUE values ) {
 }
 
 static VALUE t_confidence_interval( VALUE self, VALUE percentage ) {
-	double z = t_z_score( NUM2DBL( percentage ) );
+    double perc = t_parse_percentage( percentage );
+	double z = t_z_score( perc );
 	double stddev = NUM2DBL( rb_iv_get( self, "@standard_deviation" ) );
 	double mean = NUM2DBL( rb_iv_get( self, "@mean" ) );
 	double lower_bound = - z * stddev + mean;

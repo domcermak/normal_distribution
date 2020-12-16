@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe NormalDistribution::Model do
-  it 'has a version number' do
-    expect(NormalDistribution::VERSION).not_to be nil
-  end
-
   context 'with successful evaluation' do
     let(:data) { [ 1, 2, 2, 3, 3, 3, 4, 4, 5 ] }
 

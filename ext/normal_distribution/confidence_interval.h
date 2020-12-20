@@ -1,0 +1,8 @@
+#ifndef NORMAL_DISTRIBUTION_CONFIDENCE_INTERVAL_H
+#define NORMAL_DISTRIBUTION_CONFIDENCE_INTERVAL_H
+
+#include "ruby.h"
+
+void Init_confidence_interval( void );
+
+#endif //NORMAL_DISTRIBUTION_CONFIDENCE_INTERVAL_H

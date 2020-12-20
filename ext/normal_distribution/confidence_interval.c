@@ -10,6 +10,14 @@ static VALUE t_init( VALUE self, VALUE lower_bound, VALUE upper_bound ) {
 	return self;
 }
 
+static VALUE t_attr_get_upper_bound( VALUE self ) {
+	return rb_iv_get( self, "@upper_bound" );
+}
+
+static VALUE t_attr_get_lower_bound( VALUE self ) {
+	return rb_iv_get( self, "@lower_bound" );
+}
+
 void Init_confidence_interval( void ) {
 	VALUE rb_mNormalDistribution = rb_define_module( "NormalDistribution" );
 	VALUE rb_cConfidenceInterval = rb_define_class_under( rb_mNormalDistribution, "ConfidenceInterval", rb_cObject );

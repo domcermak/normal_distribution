@@ -69,7 +69,7 @@ static VALUE t_init( VALUE self, VALUE values ) {
 
 	rb_iv_set( self, "@mean", rb_float_new( mean ) );
 	rb_iv_set( self, "@standard_deviation", rb_float_new( stddev ) );
-	free( data );
+	xfree( data );
 
 	return self;
 }

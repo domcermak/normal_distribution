@@ -3,6 +3,7 @@
 
 #include "ruby.h"
 #include "erf_inv.h"
+#include "confidence_interval.h"
 
 void Init_model( void );
 

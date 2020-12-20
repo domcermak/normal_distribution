@@ -25,7 +25,8 @@ static double t_z_score( double percentage ) {
 }
 
 static double t_variance( double * data, long size, double mean ) {
-	double * squared_diff = ALLOC_N( double, size );
+	double * squared_diff = ALLOC_N(
+	double, size );
 
 	for ( long i = 0 ; i < size ; ++ i ) {
 		squared_diff[i] = pow( mean - data[i], 2 );
@@ -50,7 +51,8 @@ static double * t_parse_dbl_ary( VALUE ary, long * size ) {
 	}
 
 	VALUE * values = RARRAY_PTR( ary );
-	double * d_data = ALLOC_N( double, len );
+	double * d_data = ALLOC_N(
+	double, len );
 
 	for ( int i = 0 ; i < len ; ++ i ) {
 		d_data[i] = NUM2DBL( values[i] );
@@ -82,11 +84,14 @@ static VALUE t_confidence_interval( VALUE self, VALUE percentage ) {
 	double lower_bound = - z * stddev + mean;
 	double upper_bound = z * stddev + mean;
 
-	VALUE pair = rb_ary_new();
-	rb_ary_push( pair, rb_float_new( lower_bound ) );
-	rb_ary_push( pair, rb_float_new( upper_bound ) );
+	VALUE rb_cConfidenceInterval = rb_path2class( "NormalDistribution::ConfidenceInterval" );
+	VALUE interval = rb_funcall(
+			rb_cConfidenceInterval, rb_intern( "new" ), 2,
+			rb_float_new( lower_bound ),
+			rb_float_new( upper_bound )
+	);
 
-	return pair;
+	return interval;
 }
 
 static VALUE t_attr_mean( VALUE self ) {

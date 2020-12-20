@@ -16,10 +16,11 @@ RSpec.describe NormalDistribution::Model do
       end
 
       it 'calculates correctly confidence interval' do
-        bottom, top = subject.confidence_interval(95)
+        interval = subject.confidence_interval(95)
 
-        expect(bottom).to be_within(0.0001).of(0.7368)
-        expect(top).to be_within(0.0001).of(5.2631)
+        expect(interval).to be_instance_of(NormalDistribution::ConfidenceInterval)
+        expect(interval.lower_bound).to be_within(0.0001).of(0.7368)
+        expect(interval.upper_bound).to be_within(0.0001).of(5.2631)
       end
     end
 

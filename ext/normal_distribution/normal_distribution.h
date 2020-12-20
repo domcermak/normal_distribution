@@ -1,8 +1,6 @@
 #ifndef NORMAL_DISTRIBUTION_H
-#define NORMAL_DISTRIBUTION_H 1
+#define NORMAL_DISTRIBUTION_H
 
-#include <math.h>
-#include "ruby.h"
-#include "erf_inv.h"
+#include "model.h"
 
-#endif /* NORMAL_DISTRIBUTION_H */
+#endif //NORMAL_DISTRIBUTION_H

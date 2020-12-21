@@ -70,7 +70,7 @@ RSpec.describe NormalDistribution::Model do
     end
   end
 
-  describe 'performace' do
+  describe 'performance' do
     specify 'constructor performs linearly depending on data' do
       sizes = bench_range(8, 100_000)
       data_arrays = sizes.map { |n| Array.new(n) { rand(n) } }
@@ -80,7 +80,7 @@ RSpec.describe NormalDistribution::Model do
       }.to perform_linear.in_range(sizes)
     end
 
-    specify 'confidence_interval calculation performs constantly' do
+    specify 'confidence interval calculation performs constantly' do
       min, max = 8, 100_000
       sizes = bench_range(min, max)
       models = sizes.map do |n|

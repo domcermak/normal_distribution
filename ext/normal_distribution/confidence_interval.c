@@ -22,6 +22,14 @@ static VALUE t_attr_get_lower_bound( VALUE self ) {
 	return rb_iv_get( self, "@lower_bound" );
 }
 
+static VALUE t_include( VALUE self, VALUE value ) {
+	double lower = NUM2DBL( rb_iv_get( self, "@lower_bound" ) );
+	double upper = NUM2DBL( rb_iv_get( self, "@upper_bound" ) );
+	double v = NUM2DBL( value );
+
+	return v < lower || v > upper ? Qfalse : Qtrue;
+}
+
 void Init_confidence_interval( void ) {
 	VALUE rb_mNormalDistribution = rb_path2class( "NormalDistribution" );
 	VALUE rb_cConfidenceInterval = rb_define_class_under( rb_mNormalDistribution, "ConfidenceInterval", rb_cObject );
@@ -29,4 +37,5 @@ void Init_confidence_interval( void ) {
 	rb_define_method( rb_cConfidenceInterval, "initialize", t_init, 2 );
 	rb_define_method( rb_cConfidenceInterval, "lower_bound", t_attr_get_lower_bound, 0 );
 	rb_define_method( rb_cConfidenceInterval, "upper_bound", t_attr_get_upper_bound, 0 );
+	rb_define_method( rb_cConfidenceInterval, "include?", t_include, 1 );
 }

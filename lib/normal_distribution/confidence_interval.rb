@@ -21,5 +21,12 @@ module NormalDistribution
     #      # This is stub used for indexing
     #   end
     #
+    #   # Decides, whether value is from the interval
+    #   #
+    #   # @param value [Numeric] value to be compared with interval bounds
+    #   # @return [Boolean] true if value is from the interval. Otherwise returns false.
+    #   def include?(value)
+    #      # This is stub used for indexing
+    #   end
   end
 end

@@ -25,8 +25,7 @@ static double t_z_score( double percentage ) {
 }
 
 static double t_variance( double * data, long size, double mean ) {
-	double * squared_diff = ALLOC_N(
-	double, size );
+	double * squared_diff = ALLOC_N( double, size );
 
 	for ( long i = 0 ; i < size ; ++ i ) {
 		squared_diff[i] = pow( mean - data[i], 2 );
@@ -51,8 +50,7 @@ static double * t_parse_dbl_ary( VALUE ary, long * size ) {
 	}
 
 	VALUE * values = RARRAY_PTR( ary );
-	double * d_data = ALLOC_N(
-	double, len );
+	double * d_data = ALLOC_N( double, len );
 
 	for ( int i = 0 ; i < len ; ++ i ) {
 		d_data[i] = NUM2DBL( values[i] );

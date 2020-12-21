@@ -23,7 +23,7 @@ static VALUE t_attr_get_lower_bound( VALUE self ) {
 }
 
 void Init_confidence_interval( void ) {
-	VALUE rb_mNormalDistribution = rb_define_module( "NormalDistribution" );
+	VALUE rb_mNormalDistribution = rb_path2class( "NormalDistribution" );
 	VALUE rb_cConfidenceInterval = rb_define_class_under( rb_mNormalDistribution, "ConfidenceInterval", rb_cObject );
 
 	rb_define_method( rb_cConfidenceInterval, "initialize", t_init, 2 );

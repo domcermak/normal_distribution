@@ -103,7 +103,7 @@ static VALUE t_attr_stddev( VALUE self ) {
 }
 
 void Init_model( void ) {
-	VALUE rb_mNormalDistribution = rb_define_module( "NormalDistribution" );
+	VALUE rb_mNormalDistribution = rb_path2class( "NormalDistribution" );
 	VALUE rb_cModel = rb_define_class_under( rb_mNormalDistribution, "Model", rb_cObject );
 
 	rb_define_method( rb_cModel, "initialize", t_init, 1 );

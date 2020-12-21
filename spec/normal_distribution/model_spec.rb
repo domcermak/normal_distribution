@@ -39,8 +39,9 @@ RSpec.describe NormalDistribution::Model do
         end
 
         it 'raises error when percentage is a string' do
-          expect { subject.confidence_interval('invalid_type') }.to raise_error TypeError,
-                                                                                'no implicit conversion to float from string'
+          expect {
+            subject.confidence_interval('invalid_type')
+          }.to raise_error TypeError, 'no implicit conversion to float from string'
         end
       end
 
@@ -81,7 +82,7 @@ RSpec.describe NormalDistribution::Model do
     end
 
     specify 'confidence interval calculation performs constantly' do
-      min, max = 8, 100_000
+      min, max = 8, 1_000_000
       sizes = bench_range(min, max)
       models = sizes.map do |n|
         data = Array.new(n) { rand(n) }

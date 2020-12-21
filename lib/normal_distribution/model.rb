@@ -20,10 +20,10 @@ module NormalDistribution
     #      # This is stub used for indexing
     #   end
     #
-    #   # Calculates confidence interval for given percentage
+    #   # Calculates confidence interval for given probability in percentage
     #   #
-    #   # @param percentage [Numeric] a number in interval <0, 100> representing probability
-    #   # @return [Array<Float>] an array containing 2 values, lower bound and upper_bound of confidence interval
+    #   # @param percentage [Numeric] a number in interval <0, 100> representing probability in percentage
+    #   # @return [ConfidenceInterval] an instance of ConfidenceInterval class
     #   #
     #   # @since 0.2.0
     #   def confidence_interval(percentage)

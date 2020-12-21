@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    normal_distribution (0.1.2)
+    normal_distribution (0.2.0)
 
 GEM
   remote: https://rubygems.org/

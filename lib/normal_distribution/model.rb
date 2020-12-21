@@ -24,6 +24,8 @@ module NormalDistribution
     #   #
     #   # @param percentage [Numeric] a number in interval <0, 100> representing probability
     #   # @return [Array<Float>] an array containing 2 values, lower bound and upper_bound of confidence interval
+    #   #
+    #   # @since 0.2.0
     #   def confidence_interval(percentage)
     #      # This is stub used for indexing
     #   end

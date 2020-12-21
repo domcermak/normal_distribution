@@ -25,13 +25,15 @@ data = [1, 1.5, 1.8, 1.9, 2, 2.1, 2, 2.3, 2.7, 2.9, 3.1]
 model = NormalDistribution::Model.new data
 
 percentage = 95
-bottom, top = model.confidence_interval(percentage)
+interval = model.confidence_interval(percentage)
 
 potential_anomaly = 3.0
-if bottom > potential_anomaly or top < potential_anomaly  
-    puts "#{ potential_anomaly } is in group of rarest 5 %. Therefore, it's an anomaly"
+unless interval.include? potential_anomaly
+    puts "#{ potential_anomaly } is in group of values with probability lower then 5 %. Therefore, it's an anomaly"
 end
 ```
+
+![95% confidence interval](https://upload.wikimedia.org/wikipedia/commons/b/bf/NormalDist1.96.png)
 
 ## Development
 

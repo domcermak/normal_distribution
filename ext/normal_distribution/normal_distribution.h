@@ -1,10 +1,7 @@
 #ifndef NORMAL_DISTRIBUTION_H
-#define NORMAL_DISTRIBUTION_H 1
+#define NORMAL_DISTRIBUTION_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include "ruby.h"
-#include "erf_inv.h"
+#include "model.h"
+#include "confidence_interval.h"
 
-#endif /* NORMAL_DISTRIBUTION_H */
+#endif //NORMAL_DISTRIBUTION_H

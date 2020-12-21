@@ -7,6 +7,6 @@
 
 #include <math.h>
 
-long double t_erf_inv(long double x);
+long double t_erf_inv( long double x );
 
 #endif //NORMAL_DISTRIBUTION_ERF_INV_H

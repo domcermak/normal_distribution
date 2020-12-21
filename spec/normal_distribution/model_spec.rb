@@ -16,10 +16,11 @@ RSpec.describe NormalDistribution::Model do
       end
 
       it 'calculates correctly confidence interval' do
-        bottom, top = subject.confidence_interval(95)
+        interval = subject.confidence_interval(95)
 
-        expect(bottom).to be_within(0.0001).of(0.7368)
-        expect(top).to be_within(0.0001).of(5.2631)
+        expect(interval).to be_instance_of(NormalDistribution::ConfidenceInterval)
+        expect(interval.lower_bound).to be_within(0.0001).of(0.7368)
+        expect(interval.upper_bound).to be_within(0.0001).of(5.2631)
       end
     end
 
@@ -38,8 +39,9 @@ RSpec.describe NormalDistribution::Model do
         end
 
         it 'raises error when percentage is a string' do
-          expect { subject.confidence_interval('invalid_type') }.to raise_error TypeError,
-                                                                                'no implicit conversion to float from string'
+          expect {
+            subject.confidence_interval('invalid_type')
+          }.to raise_error TypeError, 'no implicit conversion to float from string'
         end
       end
 
@@ -69,7 +71,7 @@ RSpec.describe NormalDistribution::Model do
     end
   end
 
-  describe 'performace' do
+  describe 'performance' do
     specify 'constructor performs linearly depending on data' do
       sizes = bench_range(8, 100_000)
       data_arrays = sizes.map { |n| Array.new(n) { rand(n) } }
@@ -79,8 +81,8 @@ RSpec.describe NormalDistribution::Model do
       }.to perform_linear.in_range(sizes)
     end
 
-    specify 'confidence_interval calculation performs constantly' do
-      min, max = 8, 100_000
+    specify 'confidence interval calculation performs constantly' do
+      min, max = 8, 1_000_000
       sizes = bench_range(min, max)
       models = sizes.map do |n|
         data = Array.new(n) { rand(n) }

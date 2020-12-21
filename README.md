@@ -29,7 +29,7 @@ interval = model.confidence_interval(percentage)
 
 potential_anomaly = 3.0
 unless interval.include? potential_anomaly
-    puts "#{ potential_anomaly } is in group of values with probability less then 5 %. Therefore, it's an anomaly"
+    puts "#{ potential_anomaly } is in group of values with probability lower then 5 %. Therefore, it's an anomaly"
 end
 ```
 
